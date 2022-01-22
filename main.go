@@ -100,6 +100,8 @@ func main() {
 			finalMsg = strings.ReplaceAll(msg, "\\", "/")
 		} else if strings.HasPrefix(msg, "/") {
 			finalMsg = msg
+		} else if regexp.MustCompile(`^[a-zA-Z]:\\.$`).MatchString(msg[0:4]) {
+			finalMsg = "/"+msg[0:1]+"/"+strings.ReplaceAll(strings.TrimLeft(msg[2:], "\\"),"\\","/")
 		} else {
 			finalMsg = strings.ReplaceAll(msg, "\\", "/")
 		}
