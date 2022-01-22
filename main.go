@@ -23,8 +23,8 @@ func main() {
 	showVersion := flagUtils.Version().BindCmd()
 
 	fromOptions := StringOptions.New().
-		Add("in-clipboard", "from clipboard").
-		Add("in-stdin", "from std in").
+		Add("from-clipboard", "from clipboard").
+		Add("from-stdin", "from std in").
 		Bind(FlagSets.CommandFlag)
 
 	clipboardOut := flagBool.New("out-clipboard", "copy result to clipboard").BindCmd()
@@ -53,12 +53,12 @@ func main() {
 
 	var msg string
 	switch option {
-	case "in-clipboard":
+	case "from-clipboard":
 		msg, err = clipboard.ReadAll()
 		if err != nil {
 			panic(err)
 		}
-	case "in-stdin":
+	case "from-stdin":
 		b, err := ioutil.ReadAll(os.Stdin)
 		if err != nil {
 			panic(err)
